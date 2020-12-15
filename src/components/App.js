@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import "./../styles/App.css";
 
 // Do not alter the states const and values inside it.
@@ -157,14 +157,30 @@ const states = [
 function App() {
   const [townVisibility, setTownVisibility] = React.useState(false);
   const [cityVisibility, setCityVisibilty] = React.useState(false);
-  const [cityIndex, setCityIndex] = React.useState(0);
-  const [townIndex, setTownIndex] = React.useState(0);
+  const [cityIndex, setCityIndex] = React.useState(-1);
+
+  const [townIndex, setTownIndex] = React.useState(-1);
 
   const handleStates = (index, stateName) => {
+    if (cityIndex !== -1 && states[cityIndex].name === stateName) {
+      setCityVisibilty(false);
+      setTownVisibility(false);
+      setCityIndex(-1);
+      setTownIndex(-1);
+      return;
+    }
     setCityIndex(index);
     setCityVisibilty(true);
   };
   const handleCity = (index, cityName) => {
+    if (
+      townIndex !== -1 &&
+      states[cityIndex].cities[townIndex].name === cityName
+    ) {
+      setTownVisibility(false);
+      setTownIndex(-1);
+      return;
+    }
     setTownIndex(index);
     setTownVisibility(true);
   };
