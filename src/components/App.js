@@ -186,6 +186,7 @@ function App() {
   };
   return (
     <div id="main">
+      <h1>States</h1>
       {states.map((el, index) => (
         <button
           id={"state" + (index + 1)}
@@ -197,30 +198,29 @@ function App() {
           {el.name}{" "}
         </button>
       ))}
-      <div>
-        {cityVisibility &&
-          states[cityIndex].cities.map((el, index) => (
-            <div
-              id={"city" + (index + 1)}
-              key={el.name}
-              onClick={() => {
-                handleCity(index, el.name);
-              }}
-            >
-              {" "}
-              {el.name}{" "}
-            </div>
-          ))}
-      </div>
-      <div>
-        {townVisibility &&
-          states[cityIndex].cities[townIndex].towns.map((el, index) => (
-            <div id={"town" + (index + 1)} key={el.name}>
-              {" "}
-              {el.name}{" "}
-            </div>
-          ))}
-      </div>
+      <h1>Cities</h1>
+      {cityVisibility &&
+        states[cityIndex].cities.map((el, index) => (
+          <button
+            id={"city" + (index + 1)}
+            key={el.name}
+            onClick={() => {
+              handleCity(index, el.name);
+            }}
+          >
+            {" "}
+            {el.name}{" "}
+          </button>
+        ))}
+
+      <div>Towns</div>
+      {townVisibility &&
+        states[cityIndex].cities[townIndex].towns.map((el, index) => (
+          <div id={"town" + (index + 1)} key={el.name}>
+            {" "}
+            {el.name}{" "}
+          </div>
+        ))}
     </div>
   );
 }
