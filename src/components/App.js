@@ -160,17 +160,13 @@ function App() {
   const [cityIndex, setCityIndex] = React.useState(0);
   const [townIndex, setTownIndex] = React.useState(0);
 
-  const handleStates = (index) => {
+  const handleStates = (index, stateName) => {
     setCityIndex(index);
-    if (!cityVisibility) setCityVisibilty(true);
-    else setCityVisibilty(false);
+    setCityVisibilty(true);
   };
-  const handleCity = (index) => {
+  const handleCity = (index, cityName) => {
     setTownIndex(index);
-    if (!townVisibility) setTownVisibility(true);
-    else {
-      setTownVisibility(false);
-    }
+    setTownVisibility(true);
   };
   return (
     <div id="main">
@@ -179,7 +175,7 @@ function App() {
           id={"state" + (index + 1)}
           key={el.name}
           onClick={() => {
-            handleStates(index);
+            handleStates(index, el.name);
           }}
         >
           {el.name}{" "}
@@ -192,7 +188,7 @@ function App() {
               id={"city" + (index + 1)}
               key={el.name}
               onClick={() => {
-                handleCity(index);
+                handleCity(index, el.name);
               }}
             >
               {" "}
@@ -203,13 +199,7 @@ function App() {
       <div>
         {townVisibility &&
           states[cityIndex].cities[townIndex].towns.map((el, index) => (
-            <div
-              id={"city" + (index + 1)}
-              key={el.name}
-              onClick={() => {
-                handleCity(index);
-              }}
-            >
+            <div id={"town" + (index + 1)} key={el.name}>
               {" "}
               {el.name}{" "}
             </div>
