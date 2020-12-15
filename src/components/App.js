@@ -213,7 +213,7 @@ function App() {
           </button>
         ))}
 
-      <div>Towns</div>
+      <h1>Towns</h1>
       {townVisibility &&
         states[cityIndex].cities[townIndex].towns.map((el, index) => (
           <div id={"town" + (index + 1)} key={el.name}>
