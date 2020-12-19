@@ -1,6 +1,6 @@
 import React from "react";
 import "./../styles/App.css";
-
+import State from "./state";
 // Do not alter the states const and values inside it.
 const states = [
   {
@@ -155,73 +155,9 @@ const states = [
 ];
 
 function App() {
-  const [townVisibility, setTownVisibility] = React.useState(false);
-  const [cityVisibility, setCityVisibilty] = React.useState(false);
-  const [cityIndex, setCityIndex] = React.useState(-1);
-
-  const [townIndex, setTownIndex] = React.useState(-1);
-
-  const handleStates = (index, stateName) => {
-    if (cityIndex !== -1 && states[cityIndex].name === stateName) {
-      setCityVisibilty(false);
-      setTownVisibility(false);
-      setCityIndex(-1);
-      setTownIndex(-1);
-      return;
-    }
-    setCityIndex(index);
-    setCityVisibilty(true);
-    // setTownVisibility(false);
-    return;
-  };
-  const handleCity = (index, cityName) => {
-    if (
-      townIndex !== -1 &&
-      states[cityIndex].cities[townIndex].name === cityName
-    ) {
-      setTownVisibility(false);
-      setTownIndex(-1);
-      return;
-    }
-    setTownIndex(index);
-    setTownVisibility(true);
-    return;
-  };
   return (
     <div id="main">
-      {states.map((el, index) => (
-        <div
-          id={"state" + (index + 1)}
-          key={el.name}
-          onClick={() => {
-            handleStates(index, el.name);
-          }}
-        >
-          {el.name}{" "}
-        </div>
-      ))}
-
-      {cityVisibility &&
-        states[cityIndex].cities.map((el, index) => (
-          <div
-            id={"city" + (index + 1)}
-            key={el.name}
-            onClick={() => {
-              handleCity(index, el.name);
-            }}
-          >
-            {" "}
-            {el.name}{" "}
-          </div>
-        ))}
-
-      {townVisibility &&
-        states[cityIndex].cities[townIndex].towns.map((el, index) => (
-          <div id={"town" + (index + 1)} key={el.name}>
-            {" "}
-            {el.name}{" "}
-          </div>
-        ))}
+      <State states={states} />
     </div>
   );
 }
