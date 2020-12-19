@@ -171,7 +171,7 @@ function App() {
     }
     setCityIndex(index);
     setCityVisibilty(true);
-    setTownVisibility(false);
+    // setTownVisibility(false);
     return;
   };
   const handleCity = (index, cityName) => {
@@ -189,9 +189,8 @@ function App() {
   };
   return (
     <div id="main">
-      <h1>States</h1>
       {states.map((el, index) => (
-        <button
+        <div
           id={"state" + (index + 1)}
           key={el.name}
           onClick={() => {
@@ -199,12 +198,12 @@ function App() {
           }}
         >
           {el.name}{" "}
-        </button>
+        </div>
       ))}
-      <h1>Cities</h1>
+
       {cityVisibility &&
         states[cityIndex].cities.map((el, index) => (
-          <button
+          <div
             id={"city" + (index + 1)}
             key={el.name}
             onClick={() => {
@@ -213,10 +212,9 @@ function App() {
           >
             {" "}
             {el.name}{" "}
-          </button>
+          </div>
         ))}
 
-      <h1>Towns</h1>
       {townVisibility &&
         states[cityIndex].cities[townIndex].towns.map((el, index) => (
           <div id={"town" + (index + 1)} key={el.name}>
