@@ -171,6 +171,8 @@ function App() {
     }
     setCityIndex(index);
     setCityVisibilty(true);
+    setTownVisibility(false);
+    return;
   };
   const handleCity = (index, cityName) => {
     if (
@@ -183,6 +185,7 @@ function App() {
     }
     setTownIndex(index);
     setTownVisibility(true);
+    return;
   };
   return (
     <div id="main">
